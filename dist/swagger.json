@@ -1,0 +1,85 @@
+{
+  "definitions": {
+    "Address": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "postalcode": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        }
+      }
+    },
+    "Group": {
+      "properties": {
+        "name": {
+          "description": "the group's name",
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address",
+          "description": "address for user"
+        },
+        "email": {
+          "description": "email for user",
+          "type": "string"
+        },
+        "groups": {
+          "description": "list of groups",
+          "items": {
+            "$ref": "#/definitions/Group"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "name for user",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "name"
+      ]
+    }
+  },
+  "info": {
+    "title": "Cool product name",
+    "version": "0.0.0"
+  },
+  "paths": {
+    "/api/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created"
+          }
+        },
+        "summary": "Create a new user",
+        "tags": [
+          "users"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0"
+}
